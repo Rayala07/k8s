@@ -1,10 +1,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: express-service
+  name: main-server-service
 spec:
   selector:
-    app: express
+    # Selector tells the service which pods to monitor, and which Pod to send the traffic to. Very important to exactly match the pod name ->
+    app: main-server
   type: ClusterIP
   ports:
     - name: http

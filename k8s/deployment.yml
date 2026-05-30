@@ -3,21 +3,27 @@ kind: Deployment
 metadata:
   name: express-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: express
+    # The selector tells the deploymemnt which pods to monitor.
+      app: main-server
   template:
     metadata:
       labels:
-        app: express
+        app: main-server
     spec:
       containers:
-        - name: express-container
+      # Name of the container in the POD
+        - name: main-server
+        # Container will run upon which image ?
           image: k8s_server:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+            # Resources - The resource the POD will use to run the contianer.
+            # Limit: Maximum amount of resources the container can use.
+            # Request: Minimum amount of resources the container needs to run.
           resources:
             limits:
               # Memory in bytes
